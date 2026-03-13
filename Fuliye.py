@@ -1,0 +1,20 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img = cv2.imread("tou.jpg",0)
+f = np.fft.fft2(img)
+fshift = np.fft.fftshift(f)
+ishift = np.fft.ifftshift(fshift)
+io = np.fft.ifft2(ishift)
+io = np.abs(io)
+plt.subplot(121)
+result = 20*np.log(np.abs(fshift))
+plt.subplot(121)
+plt.imshow(img,cmap='gray')
+plt.title('Original')
+plt.axis('off')
+plt.subplot(122)
+plt.imshow(io,cmap='gray')
+plt.title('Result')
+plt.axis('off')
+plt.show()
